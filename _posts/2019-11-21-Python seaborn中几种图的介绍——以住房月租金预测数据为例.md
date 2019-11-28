@@ -10,6 +10,7 @@ tags:
 ---
 # 画所有图都需要做的事
 **引入一些包**
+
 ``` python
     import pandas as pd
     pd.plotting.register_matplotlib_converters()
@@ -19,7 +20,8 @@ tags:
     #不用输入plt.show()就能将图像自动显示
     import seaborn as sns
 ```
-**加载要用的数据**
+**加载要用的数据**   
+
 ``` python
     train_filepath = "D:/python_work/data/train.csv"
     test_filepath = "D:/python_work/data/test.csv"
@@ -29,6 +31,7 @@ tags:
     #提供数据集的文件路径
 ```
 **预览以下一部分/全部数据**
+
 ``` pyhton
     train_data.head()
     #打印前五行数据
@@ -37,7 +40,7 @@ tags:
 ```
 # 相关性与因果性的区别
 ## 描述
-*    /Blog-Share/img/1911/11/Chasel/xgyg.png
+![xgyg](/Blog-Share/img/1911/11/Chasel/xgyg.png)
 B与C有相关性，但没有因果性
 *    A发生时，B发生的概率很大，AB有相关性
 *    A发生时，B一定发生，AB有因果性
@@ -53,13 +56,15 @@ B与C有相关性，但没有因果性
 # 图
 ## 表示趋势
 ### 折线图
+
 ``` python
     plt.figure(figsize=(16,6))
     sns.lineplot(data=test_data['房屋面积'],label="house_s")
     plt.xlabel("楼层")
 ```
-![line_s]](/Blog-Share/img/1911/03/Chasel/line_s.png)
+![line_s](/Blog-Share/img/1911/03/Chasel/line_s.png)
 可以看出楼层数为1的住房面积最大
+
 ``` python
     plt.figure(figsize=(16,6))
     sns.lineplot(data=test_data['卧室数量'],label="bedroom")
@@ -67,18 +72,20 @@ B与C有相关性，但没有因果性
     sns.lineplot(data=test_data['卫的数量'],label="wc")
     plt.xlabel("楼层")
 ```
-![line_3]](/Blog-Share/img/1911/03/Chasel/line_3.png)
+![line_3](/Blog-Share/img/1911/03/Chasel/line_3.png)
 可以看出楼层数为1的住房卧室、厅、卫的数量都最大，与面积最大相吻合。
 ## 表示关系
 ### 热度图
+
 ``` python
 
 ```
 ### 散点图
+
 ``` python
     sns.scatterplot(x=train_data['房屋面积'],y=train_data['月租金'])
 ```
-![sandian]](/Blog-Share/img/1911/03/Chasel/sandian.png)
+![sandian](/Blog-Share/img/1911/03/Chasel/sandian.png)
 可以看出虽然有几个异常值，但房屋面积与月租金有很大的相关性
 去掉异常值之后再画出一条回归线
 ``` python
@@ -87,20 +94,22 @@ B与C有相关性，但没有因果性
     sns.regplot(x=train_data2['房屋面积'],y=train_data2['月租金'])
 ```
 ### 柱状图
+
 ``` python
     plt.figure(figsize=(10,6))
     sns.barplot(x=train_data['区'],y=train_data['月租金'])
 ```
-![bar1]](/Blog-Share/img/1911/03/Chasel/bar1.png)
+![bar1](/Blog-Share/img/1911/03/Chasel/bar1.png)
 这张图可以表示不同小区间月租金的差别
 ## 表示分布
 ### 直方图
+
 ``` python
     train_data.hist(figsize=(20, 15), bins=50, grid=False)
     plt.show()
 ```
 可以用hist函数观察各特征的分布情况
-![bar2]](/Blog-Share/img/1911/03/Chasel/bar2.png)
+![bar2](/Blog-Share/img/1911/03/Chasel/bar2.png)
 也可以观察单个列的分布，当我想观察地铁线路的分布时
 ``` python
     sns.distplot(a=train_data['地铁线路'],kde=False)
@@ -112,10 +121,11 @@ B与C有相关性，但没有因果性
 因为数据中有空值，所以可以把空值转换为0，再观察其分布
 ### 密度图
 密度图可以视为平滑的直方图
+
 ``` python
     sns.kdeplot(train_data['位置'],shade=True)
 ```
-![kde]](/Blog-Share/img/1911/03/Chasel/kde.png)
+![kde](/Blog-Share/img/1911/03/Chasel/kde.png)
 可以观察单列，如位置的分布情况
 # 总结（困难）
 *    pandas包时可以用时不可以用，于是重装了anaconda
